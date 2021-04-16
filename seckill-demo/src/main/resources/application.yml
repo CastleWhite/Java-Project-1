@@ -1,0 +1,31 @@
+spring:
+  thymeleaf:
+#    关闭缓存
+    cache: false
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seckill?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: shapilang
+    hikari:
+      # 连接池
+      pool-name: DateHikariCP
+      minimum-idle: 5 # 最小空闲连接数
+      idle-timeout: 1800000 # 空闲连接存活最大时间， 默认600000（10min）
+      maximum-pool-size: 10 # 最大连接数，默认10
+      auto-commit: true # 从连接池返回的连接自动提交
+      max-lifetime: 1800000 # 连接最大存活时间，0表示永久，默认30min
+      connection-timeout: 30000 # 连接超时时间，默认30000（30s）
+      connection-test-query: SELECT 1  # 测试连接是否可用的查询语句
+
+#
+mybatis-plus:
+#  配置mapper.xml映射文件
+  mapper-locations: classpath*:/mapper/*Mapper.xml
+#  配置mybatis数据返回类型别名（默认类名）
+  type-aliases-package: com.test_dgr.seckill.pojo
+
+# mybatis SQL 打印 （方法接口所在的包）
+logging:
+  level:
+    com.test_dgr.seckill.mapper: debug
